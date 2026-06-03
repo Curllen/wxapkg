@@ -45,7 +45,8 @@ const filteredItems = computed(() => {
   const queryStr = search.value.toLowerCase().trim()
   return wxapkgItems.value.filter(item =>
     item.WxId.toLowerCase().includes(queryStr) ||
-    item.Location.toLowerCase().includes(queryStr)
+    item.Location.toLowerCase().includes(queryStr) ||
+      item.Title.toLowerCase().includes(queryStr)
   )
 })
 
@@ -223,7 +224,7 @@ onBeforeUnmount(() => {
           v-model="search"
           class="search-input"
           type="text"
-          placeholder="搜索小程序 ID 或路径"
+          placeholder="搜索小程序 名称、ID 或路径"
         />
       </div>
       <div class="search-actions">
@@ -279,7 +280,7 @@ onBeforeUnmount(() => {
           </template>
         </Column>
 
-        <Column header="小程序名称" field="WxId" style="width: 170px">
+        <Column header="小程序名称" field="Title" style="width: 170px">
           <template #body="{ data }">
             <div class="mono" style="font-size:13px; white-space:nowrap">{{ data.Title }}</div>
           </template>
